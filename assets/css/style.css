@@ -1,0 +1,28 @@
+.page {
+    background-image: url('../images/spiration-light.png');
+    background-repeat: repeat;
+    width: 90%;
+}
+
+.panel {
+    box-sizing: border-box;
+    min-height: 1px;
+    min-width: 1px;
+}
+
+.panel--filter {
+    width: 100%;
+}
+
+.panel--results {
+    width: 50%;
+}
+
+.panel--search {
+    width: 20%;
+}
+
+.panel--results, .panel--search {
+    margin: 0 auto;
+    display: inline-block;
+}
