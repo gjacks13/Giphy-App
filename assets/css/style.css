@@ -2,27 +2,33 @@
     background-image: url('../images/spiration-light.png');
     background-repeat: repeat;
     width: 90%;
+    margin: 0 auto;
 }
 
 .panel {
     box-sizing: border-box;
     min-height: 1px;
     min-width: 1px;
+    padding: 20px;
 }
 
-.panel--filter {
+.panel__gif-cont {
+    display: inline-block;
+}
+
+#panel--filter {
     width: 100%;
 }
 
-.panel--results {
-    width: 50%;
+#panel--results {
+    width: 80%;
 }
 
-.panel--search {
-    width: 20%;
+#panel--search {
+    width: 10%;
 }
 
-.panel--results, .panel--search {
+#panel--results, #panel--search {
     margin: 0 auto;
     display: inline-block;
 }

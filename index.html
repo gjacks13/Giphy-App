@@ -5,22 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giphy Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/css/vex.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/css/vex-theme-default.css" />
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="page">
-    <div class="panel panel--filter">
+    <div id="panel--filter" class="panel">
         filters
     </div>
 
-    <div class="panel panel--results">
-        results
-    </div>
+    <div id="panel--results" class="panel"></div>
 
-    <div class="panel panel--search">
+    <div id="panel--search" class="panel">
         <input type="text" class="panel__search-box">
         <button class="panel__search-btn">Search</button>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/js/vex.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-default'</script>
     <script src="assets/script/app.js"></script>
 </body>
 </html>
