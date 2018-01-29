@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Giphy Search</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/css/vex.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/css/vex-theme-default.css" />
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Giphy Search</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/css/vex.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/css/vex-theme-default.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="page">
-    <div id="panel--filter" class="panel">
-        filters
-    </div>
+  <div id="panel-filter" class="panel"></div>
 
-    <div id="panel--results" class="panel"></div>
+  <div id="panel-results" class="panel"></div>
 
-    <div id="panel--search" class="panel">
-        <input type="text" class="panel__search-box">
-        <button class="panel__search-btn">Search</button>
-    </div>
+  <div id="panel-search" class="panel">
+    <form class="panel-search__form">
+      <input type="text" name="searchTopic" placeholder="Enter Search Topic" class="panel__form__search-box">
+      <button class="panel__form__search-btn panel__form__search-btn--blue">Search</button>
+    </form>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/js/vex.min.js"></script>
-    <script>vex.defaultOptions.className = 'vex-theme-default'</script>
-    <script src="assets/script/app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vex-js/4.0.1/js/vex.min.js"></script>
+  <script>vex.defaultOptions.className = 'vex-theme-default'</script>
+  <script src="assets/script/app.js"></script>
 </body>
 </html>

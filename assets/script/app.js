@@ -6,11 +6,43 @@ let giphySearch = {
   resultSet: [],
   init: function() {
       this.resultSet = [];
+      
+      // populate initial buttons set
+      this.topics.forEach(searchTerm => {
+        this.addSearchTerm(searchTerm);
+      });
       this.searchGifs('cat');
   },
+  searchTermExists: function(searchTerm) {
+    if (this.topics.indexOf(searchTerm) > -1) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+  addSearchTerm: function(searchTerm) {
+    let searchBtn = document.createElement('button');
+    searchBtn.textContent = searchTerm;
+    searchBtn.classList.add('panel__filter-btn');
+    searchBtn.classList.add('panel__filter-btn--blue');
+
+    document.getElementById('panel-filter').appendChild(searchBtn);
+  },
   searchGifs: function(searchTerm) {
+    // return if empty string is passed
+    if (searchTerm === '') {
+      this.displayAlert('Please input a topic to search.');
+      return;
+    }
+    
     // reset results
     this.resetResults();
+
+    // add search term
+    if (this.searchTermExists(searchTerm)) {
+      this.addSearchTerm(searchTerm);
+      this.topics.push(searchTerm);
+    }
 
     $.ajax({
       context: this,
@@ -46,7 +78,7 @@ let giphySearch = {
 
         // append gif to results
         gifContainer.appendChild(gifElem);
-        document.getElementById('panel--results').appendChild(gifContainer);
+        document.getElementById('panel-results').appendChild(gifContainer);
       }
     });
 
@@ -54,10 +86,10 @@ let giphySearch = {
     this.setGifHandlers();
   },
   setGifHandlers: function() {
-    document.getElementById('panel--results').addEventListener('click', this.handleGifClick.bind(this));
+    document.getElementById('panel-results').addEventListener('click', this.handleGifClick.bind(this));
   },
   removeGifHandlers: function() {
-    document.getElementById('panel--results').removeEventListener('click');
+    document.getElementById('panel-results').removeEventListener('click');
   },
   handleGifClick: function(e) {
     let clickedElem = e.target;
