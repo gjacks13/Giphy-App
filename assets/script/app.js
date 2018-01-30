@@ -11,7 +11,9 @@ let giphySearch = {
       this.topics.forEach(searchTerm => {
         this.addSearchTerm(searchTerm);
       });
-      this.searchGifs('cat');
+      
+      // set listeners
+      this.setInitListeners();
   },
   searchTermExists: function(searchTerm) {
     if (this.topics.indexOf(searchTerm) > -1) {
@@ -39,7 +41,7 @@ let giphySearch = {
     this.resetResults();
 
     // add search term
-    if (this.searchTermExists(searchTerm)) {
+    if (!this.searchTermExists(searchTerm)) {
       this.addSearchTerm(searchTerm);
       this.topics.push(searchTerm);
     }
@@ -47,7 +49,7 @@ let giphySearch = {
     $.ajax({
       context: this,
       method: 'GET',
-      url: `https://${this.host}/v1/gifs/search?api_key=${this.apiKey}&q=${this.searchTerm}&limit=${this.maxResultCount}`
+      url: `https://${this.host}/v1/gifs/search?api_key=${this.apiKey}&q=${searchTerm}&limit=${this.maxResultCount}`
     }).done(function(response) {
       let context = this;
       this.displayResultSet(response);
@@ -104,6 +106,20 @@ let giphySearch = {
         }
     }
   },
+  handleSubmitClick: function(e) {
+    e.preventDefault();
+    let searchBox = document.getElementById('search-box');
+    let searchTerm = searchBox.value;
+    if (searchTerm !== '' && searchTerm !== undefined) {
+      this.searchGifs(searchTerm);
+    }
+  },
+  handleTopicClick: function(e) {
+    let clickedElem = e.target;
+    if (clickedElem.className.includes('panel__filter-btn')) {
+      this.searchGifs(clickedElem.innerText);
+    }
+  },
   isAnimated(gifElem) {
     if (gifElem.className === 'panel__gif-cont') {
       return gifElem.firstElementChild.getAttribute('data-is-animated') === 'true' ? true : false;
@@ -134,18 +150,13 @@ let giphySearch = {
   stopAllGifs: function() {
     gifs = document.getElementsByClassName('panel__gif-cont__gif');
     if (gifs.length > 0) {
-      gifs.forEach(gif => {
+      [].forEach.call(gifs, gif => {
         this.stopGif(gif);
       });
     }
   },
   removeAllGifs: function() {
-    gifs = document.getElementsByClassName('panel__gif-cont');
-    if (gifs.length > 0) {
-      gifs.forEach(gif => {
-        gif.parentNode.removeChild(gif);
-      });
-    }
+    document.getElementById('panel-results').innerHTML = '';
   },
   setAnimateState: function(gifElem, state) {
     if (state === 'true') {
@@ -153,6 +164,10 @@ let giphySearch = {
     } else {
       gifElem.setAttribute('data-is-animated', 'false');
     }
+  },
+  setInitListeners: function() {
+    document.getElementById('panel-filter').addEventListener('click', this.handleTopicClick.bind(this));
+    document.getElementById('submit-btn').addEventListener('click', this.handleSubmitClick.bind(this));
   },
   resetResults: function() {
     this.stopAllGifs();
