@@ -4,6 +4,7 @@ let giphySearch = {
   maxResultCount: 10,
   topics: ['cat', 'party', 'OMG'],
   resultSet: [],
+  gifClickHandler: null,
   init: function() {
       this.resultSet = [];
       
@@ -88,10 +89,11 @@ let giphySearch = {
     this.setGifHandlers();
   },
   setGifHandlers: function() {
-    document.getElementById('panel-results').addEventListener('click', this.handleGifClick.bind(this));
+    this.gifClickHandler = this.handleGifClick.bind(this);
+    document.getElementById('panel-results').addEventListener('click', this.gifClickHandler);
   },
   removeGifHandlers: function() {
-    document.getElementById('panel-results').removeEventListener('click');
+    document.getElementById('panel-results').removeEventListener('click', this.gifClickHandler);
   },
   handleGifClick: function(e) {
     let clickedElem = e.target;
@@ -101,7 +103,6 @@ let giphySearch = {
           let gifElem = clickedElem.firstElementChild;
           this.isAnimated(gifElem) ? this.stopGif(gifElem) : this.animateGif(gifElem);
         } else if (clickedElem.className === 'panel__gif-cont__gif') {
-          let animated = this.isAnimated(clickedElem);
           this.isAnimated(clickedElem) ? this.stopGif(clickedElem) : this.animateGif(clickedElem);
         }
     }
@@ -172,6 +173,7 @@ let giphySearch = {
   resetResults: function() {
     this.stopAllGifs();
     this.removeAllGifs();
+    this.removeGifHandlers();
   },
   displayAlert: function(msg) {
     vex.dialog.alert({
